@@ -21,7 +21,7 @@ func main() {
 	var err error
 	var s string
 
-	targetSize := targetUnit
+	targetSize := targetUnit / 16
 
 	runtime.ReadMemStats(&mem)
 	fmt.Println(
@@ -60,10 +60,10 @@ func main() {
 		"mem (GiB)", float64(mem.Alloc/1024/1024)/1024,
 		float64(mem.TotalAlloc/1024/1024)/1024, float64(mem.Sys/1024/1024)/1024)
 
-	targetSize *= 16
+	targetSize *= 256
 	now = time.Now()
 	fmt.Println()
-	fmt.Println("increasing size: ", 16, "times")
+	fmt.Println("increasing size: ", 256, "times")
 	for i := 0; i < targetSize; i++ {
 		s, err = store.SetRndKey(struct{}{})
 		if err != nil {
